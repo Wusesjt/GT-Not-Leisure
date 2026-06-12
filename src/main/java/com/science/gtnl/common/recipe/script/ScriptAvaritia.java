@@ -14,6 +14,7 @@ import com.dreammaster.item.NHItemList;
 import com.dreammaster.scripts.IScriptLoader;
 import com.glodblock.github.common.item.ItemFluidPacket;
 import com.reavaritia.utils.enums.ReAvaItemList;
+import com.science.gtnl.ScienceNotLeisure;
 import com.science.gtnl.utils.enums.GTNLItemList;
 import com.science.gtnl.utils.enums.ModList;
 import com.science.gtnl.utils.item.ItemUtils;
@@ -1461,9 +1462,10 @@ public class ScriptAvaritia implements IScriptLoader {
                 '!',
                 GregtechItemList.Industrial_Centrifuge.get(1));
 
-        ExtremeCraftingManager.getInstance()
-            .addExtremeShapedOreRecipe(
-                GTNLItemList.CompressedStargateTier9.get(1),
+        try {
+            ExtremeCraftingManager.getInstance()
+                .addExtremeShapedOreRecipe(
+                    GTNLItemList.CompressedStargateTier9.get(1),
                 "ABCDEFGHI",
                 "JKLMNOPQR",
                 "STUVWXYZ0",
@@ -1623,6 +1625,10 @@ public class ScriptAvaritia implements IScriptLoader {
                 GregtechItemList.PowerSubStation.get(1),
                 '!',
                 GregtechItemList.Industrial_Sifter.get(1));
+        } catch (Throwable t) {
+            ScienceNotLeisure.LOG
+                .error("Failed to register CompressedStargateTier9 Extreme Crafting recipe", t);
+        }
 
         ExtremeCraftingManager.getInstance()
             .addExtremeShapedOreRecipe(

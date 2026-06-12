@@ -28,7 +28,7 @@ public class ScriptLoader {
                     script.loadRecipes();
                     final long timeToLoad = System.currentTimeMillis() - timeStart;
                     ScienceNotLeisure.LOG.info("Loaded {} script in {} ms.", script.getScriptName(), timeToLoad);
-                } catch (Exception ex) {
+                } catch (Throwable ex) {
                     errored.add(script.getScriptName());
                     ScienceNotLeisure.LOG.error("There was an error while loading {}!", script.getScriptName(), ex);
                 }
