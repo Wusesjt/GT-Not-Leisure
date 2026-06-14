@@ -16,10 +16,16 @@ public enum Mixins implements IMixins {
     FORGE_CORE(Side.COMMON, "Forge.MixinFMLProxyPacket", "Forge.MixinForgeHook"),
 
     GREGTECH_EARLY(Side.COMMON, "Gregtech.AccessorMTETieredMachineBlock", "Gregtech.AccessorEyeOfHarmonyRecipe",
-        "Gregtech.AccessorGTRecipe", "Gregtech.AccessorGTRecipeBuilder", "Gregtech.AccessorGTLanguageManager",
-        "Gregtech.AccessorCommonMetaTileEntity", "Gregtech.AccessorMetaTileEntity", "Gregtech.AccessorMTEHatch",
-        "Gregtech.AccessorProcessingLogic", "Gregtech.AccessorRecipeDisplayInfo", "Gregtech.MixinMTEBasicMachine",
-        "Gregtech.MixinBaseMetaTileEntity"),
+        "Gregtech.AccessorGTRecipe", "Gregtech.AccessorGTRecipeBuilder", "Gregtech.AccessorGTRecipeWithAlt",
+        "Gregtech.AccessorGTLanguageManager", "Gregtech.AccessorCommonMetaTileEntity",
+        "Gregtech.AccessorMetaTileEntity", "Gregtech.AccessorMTEHatch", "Gregtech.AccessorProcessingLogic",
+        "Gregtech.AccessorRecipeDisplayInfo", "Gregtech.MixinMTEBasicMachine", "Gregtech.MixinBaseMetaTileEntity",
+        "Gregtech.AssLineRemover.MixinGTMod", "Gregtech.AssLineRemover.MixinGTRecipeBuilder",
+        "Gregtech.AssLineRemover.MixinTTRecipeAdder"),
+
+    GREGTECH_CLIENT_EARLY(
+        new MixinBuilder("Gregtech early client safety mixins").addClientMixins("Gregtech.MixinGTLanguageManager")
+            .setPhase(Phase.EARLY)),
 
     NO_NHU_EARLY(
         new MixinBuilder("Early Mixins when NHUtilities is absent").addCommonMixins("NoNHU.MixinBaseMetaTileEntity")
@@ -119,6 +125,7 @@ public enum Mixins implements IMixins {
             "Gregtech.MixinGTShapelessRecipe",
             "Gregtech.MixinGTUtility",
             "Gregtech.MixinGTUtil",
+            "Gregtech.MixinAssemblyLineUtils",
             "Gregtech.MixinMTEBetterJukebox",
             "Gregtech.MixinMTEForgeOfGods",
             "Gregtech.MixinMTEHatch",
@@ -143,9 +150,6 @@ public enum Mixins implements IMixins {
             "Gregtech.MixinRecipeGenFluids",
             "Gregtech.MixinProcessingDust",
             "Gregtech.MixinTTMultiblockBase",
-            "Gregtech.AssLineRemover.MixinGTMod",
-            "Gregtech.AssLineRemover.MixinGTRecipeBuilder",
-            "Gregtech.AssLineRemover.MixinTTRecipeAdder",
             "InventoryBogoSorter.MixinShortcutHandler",
             "InventoryBogoSorter.MixinSortHandler",
             "ModularUI.MixinFluidSlotWidget",
@@ -182,6 +186,11 @@ public enum Mixins implements IMixins {
         .addCommonMixins("NotEnoughEnergistics.MixinNEEPatternTerminalHandler")
         .setPhase(Phase.LATE)
         .addRequiredMod(ModList.NotEnoughEnergistics)),
+
+    NOT_ENOUGH_ITEMS(new MixinBuilder("Not Enough Items stability mixins")
+        .addClientMixins("NotEnoughItems.AccessorItemList", "NotEnoughItems.MixinItemListUpdateFilter")
+        .setPhase(Phase.LATE)
+        .addRequiredMod(ModList.NotEnoughItems)),
 
     NEI_CUSTOM_DIAGRAM(new MixinBuilder("NEI Custom Diagram Mixin")
         .addCommonMixins("NEICustomDiagram.AccessorNeiCustomDiagram", "NEICustomDiagram.MixinNeiCustomDiagram")

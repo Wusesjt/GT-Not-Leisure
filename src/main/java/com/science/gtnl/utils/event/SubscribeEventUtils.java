@@ -35,6 +35,7 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 
+import com.gtnewhorizon.gtnhlib.network.TitlePacketHandler;
 import com.science.gtnl.ScienceNotLeisure;
 import com.science.gtnl.api.TickrateAPI;
 import com.science.gtnl.common.command.CommandTickrate;
@@ -49,7 +50,6 @@ import com.science.gtnl.common.material.GTNLRecipeMaps;
 import com.science.gtnl.common.packet.DraconicArmorProjectionHitEffectPacket;
 import com.science.gtnl.common.packet.SoundPacket;
 import com.science.gtnl.common.packet.SyncCircuitNanitesPacket;
-import com.science.gtnl.common.packet.TitlePacket;
 import com.science.gtnl.common.render.PlayerDollRenderManager;
 import com.science.gtnl.config.MainConfig;
 import com.science.gtnl.loader.AchievementsLoader;
@@ -87,7 +87,8 @@ public class SubscribeEventUtils {
         new String[] { ModList.QzMiner.ID, ModList.Baubles.ID, ModList.ReAvaritia.ID, ModList.ScienceNotLeisure.ID,
             ModList.Sudoku.ID, ModList.GiveCount.ID, ModList.ChromaticTooltips.ID, ModList.ChromaticTooltipsCompat.ID,
             ModList.NewHorizonsCoreMod.ID, ModList.GalaxySpace.ID, ModList.EnhancedLootBags.ID,
-            ModList.NotEnoughEnergistics.ID, ModList.NEICustomDiagrams.ID, ModList.AvaritiaAddons.ID });
+            ModList.NotEnoughEnergistics.ID, ModList.NEICustomDiagrams.ID, ModList.AvaritiaAddons.ID,
+            ModList.EtFuturumRequiem.ID, ModList.NotEnoughItems.ID });
 
     public static final Object2IntMap<UUID> FOOD_TICK_TIMERS = new Object2IntOpenHashMap<>();
 
@@ -165,7 +166,8 @@ public class SubscribeEventUtils {
                 }
 
                 if (MainConfig.recipe.enableShowDelRecipeTitle) {
-                    TitlePacket.sendTitleToPlayer(player, "Welcome_GTNL_DeleteRecipe", 200, 0xFFFF55, 2);
+                    TitlePacketHandler.sendTimes(player, 10, 200, 20);
+                    TitlePacketHandler.sendTitle(player, new ChatComponentTranslation("Welcome_GTNL_DeleteRecipe"));
                 }
             }
 
