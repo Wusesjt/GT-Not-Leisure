@@ -58,6 +58,8 @@ dependencies {
 
     implementation("org.ow2.asm:asm-commons:9.8")
 
+    implementation("it.unimi.dsi:fastutil:8.5.18")
+
     compileOnlyApi("com.github.Nxer:Twist-Space-Technology-Mod:0.7.15:dev") { transitive = false }
     compileOnlyApi("com.github.Keriils:NH-Utilities:1.6.4:dev") { transitive = false }
 
